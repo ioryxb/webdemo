@@ -1,0 +1,16 @@
+﻿version: '3'
+services:
+  hsqldbsource:
+    restart: always
+    image: ioryxb/hsqldb:2.0
+    container_name: hsqldbsource
+    ports:
+     - "9001:9001"
+  crxdemoapi:
+    restart: "no"
+    image: ioryxb/crxdemo:2.0
+    container_name: crxdemoapi
+    links:
+     - hsqldbsource:aliashsqldbsource
+    ports:
+     - "8081:8081"
